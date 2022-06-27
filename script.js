@@ -2,11 +2,11 @@
 let seed = 12345;
 
 const grassColor = "#e1ac4a";
-const skyColor = "#cdd8e6";
-const hillColor = "#1e273f";
+const skyColor = "#063557";
+const hillColor = "#000000";
 const treeColor = "#3d1803";
 const leaveColor = "#233610";
-const sunColor = [254,254,254,80]; // with opacity
+const sunColor = [240,240,180,80]; // with opacity
 
 function preload() {
     // runs before setup 
@@ -26,7 +26,7 @@ function draw() {
   noStroke();
 
   fill(skyColor);
-  rect(0, 0, width, height / 2);
+  rect(0, 0, width, height);
 
   // An example of making something respond to the mouse
   fill(...sunColor);
@@ -35,28 +35,38 @@ function draw() {
   ellipse(mouseX,0,100,100);
   ellipse(mouseX,0,200,200);
 
-  fill(grassColor);
-  rect(0, height / 2, width, height / 2);
+  // fill(grassColor);
+  // rect(0, height / 2, width, height / 2);
 
   // An example of drawing an irregular polygon
   fill(hillColor);
   beginShape();
-  vertex(0, height / 2);
+  vertex(0, height);
   const steps = 10;
   for (let i = 0; i < steps + 1; i++) {
     let x = (width * i) / steps;
     let y =
-      height / 2 - (random() * random() * random() * height) / 8 - height / 50;
+      height / 5 * 4 - (random() * random() * random() * height) / 2 - height / 50;
     vertex(x, y);
   }
-  vertex(width, height / 2);
+  // vertex(width, height / 2);
+  vertex(width, height);
   endShape(CLOSE);
 
-  const trees = 5*random();
-  for (let i = 0; i < trees; i++) {
-    drawLtree();
+  const stars = 50*random();
+  for (let i = 0; i < stars; i++) {
+    let x = width * random() + mouseX / 100;
+    let y = random(height/2);
+    let d = width/500 * random(5);
+    let r = random(255);
+    let g = random(255);
+    let b = random(200, 255);
+    let c = color(r, g, b);
+    drawStar(x, y, d, c);
   }
 
+
+  /*
   // An example of recursively drawing an L-tree 
   function drawLtree() {
     let x = width * random();
@@ -121,5 +131,12 @@ function draw() {
     circle(x2, y2, 3);
 
   }
+  */
+
+  function drawStar(x, y, r, starColor){
+    fill(starColor);
+    ellipse(x, y, r);
+  }
 }
+
 
