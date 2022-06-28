@@ -11,6 +11,6 @@ I am trying to create a simulator that can generate some bright stars over mount
 ```
 https://unsplash.com/photos/2zBbCk0DDBM
 ```
-Credit: Siyi Zhang
+Credit: Siyi Zhang  
 Date: 6/27/2022
 
