@@ -4,7 +4,7 @@ let seed = 12345;
 const skyColor = "#063557";
 const hillColor = "#000000";
 
-const sunColor = [240,240,180,80]; // with opacity
+const sunColor = [240,240,180,300]; // with opacity
 
 function preload() {
     // runs before setup 
@@ -27,11 +27,14 @@ function draw() {
   rect(0, 0, width, height);
 
   // An example of making something respond to the mouse
-  fill(...sunColor);
-  ellipse(mouseX,0,30,30);
-  ellipse(mouseX,0,50,50);
-  ellipse(mouseX,0,100,100);
-  ellipse(mouseX,0,200,200);
+  fill(sunColor);
+  ellipse(mouseX,pow(abs(mouseX - 400) / 80, 2) * Math.PI + 60,30,30);
+  fill(skyColor);
+  ellipse(mouseX+mouseX/50 + 5,pow(abs(mouseX - 400) / 80, 2) * Math.PI + 60 ,30,30);
+  
+  
+  // ellipse(mouseX,0,100,100);
+  // ellipse(mouseX,0,200,200);
 
   // An example of drawing an irregular polygon
   fill(hillColor);
@@ -50,8 +53,8 @@ function draw() {
 
   const stars = 50*random();
   for (let i = 0; i < stars; i++) {
-    let x = width * random() + mouseX / 100;
-    let y = random(height/2);
+    let x = width * random() + mouseX / 80;
+    let y = random(height/2) + pow(abs(mouseX - 400) / 800, 2) * Math.PI;
     let d = width/500 * random(5);
     let r = random(255);
     let g = random(255);
